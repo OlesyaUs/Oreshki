@@ -24,8 +24,13 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+
     text = models.TextField(verbose_name='Отзывы о товаре:')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = "-created".split()
 
     def __str__(self):
         return self.text
